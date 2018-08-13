@@ -19,7 +19,7 @@ compile 'com.zolad:videoslimmer:1.0.0'
 
 Usage
 ==============
-### 1.Call VideoSlimmer.convertVideo and set params
+### Call VideoSlimmer.convertVideo and set params
 
 
 ```java
