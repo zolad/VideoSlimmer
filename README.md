@@ -1,6 +1,6 @@
 VideoSlimmer
 ==============
-A video converter for Android to compress video using OpenGL and MediaCodec(decode and encode). 一个安卓视频压缩工具,使用了Opengl和Mediacodec
+A video converter for Android to compress video using MediaCodec(decode and encode). 一个安卓视频压缩工具,使用了Mediacodec
 
 ![screenshot1~](https://raw.github.com/zolad/VideoSlimmer/master/screenshot/screenshot_1.gif)
 
