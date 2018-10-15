@@ -1,4 +1,11 @@
 VideoSlimmer
+
+======
+
+基于VideoSlimmer优化的极速视频压缩库，1分钟视频10内秒能够压缩完成（使用 develop 分支）。
+
+======
+
 ==============
 A video converter for Android to compress video using MediaCodec(decode and encode). 一个安卓视频压缩工具,使用了Mediacodec
 
