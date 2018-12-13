@@ -104,23 +104,18 @@ public class CodecInputSurface implements SurfaceTexture.OnFrameAvailableListene
 
 
 
-    public void awaitNewImage() {
-        final int TIMEOUT_MS = 5000;
+    public boolean awaitNewImage() {
         synchronized (mFrameSyncObject) {
-            while (!mFrameAvailable) {
-                try {
-                    mFrameSyncObject.wait(TIMEOUT_MS);
-                    if (!mFrameAvailable) {
-                        throw new RuntimeException("Surface frame wait timed out");
-                    }
-                } catch (InterruptedException ie) {
-                    throw new RuntimeException(ie);
-                }
+            if (mFrameAvailable) {
+                mTextureRender.checkGlError("before updateTexImage");
+                mSurfaceTexture.updateTexImage();
+                mFrameAvailable = false;
+
+                return true;
             }
-            mFrameAvailable = false;
         }
-        mTextureRender.checkGlError("before updateTexImage");
-        mSurfaceTexture.updateTexImage();
+
+        return false;
     }
 
     public void drawImage() {
@@ -130,11 +125,7 @@ public class CodecInputSurface implements SurfaceTexture.OnFrameAvailableListene
     @Override
     public void onFrameAvailable(SurfaceTexture st) {
         synchronized (mFrameSyncObject) {
-            if (mFrameAvailable) {
-                throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
-            }
             mFrameAvailable = true;
-            mFrameSyncObject.notifyAll();
         }
     }
 
